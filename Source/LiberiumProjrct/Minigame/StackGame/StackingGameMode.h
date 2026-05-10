@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Core/GameMode/LiberiumGameModeBase.h"
+#include "LiberiumProjrct/Core/GameMode/LiberiumGameModeBase.h"
 #include "StackingGameMode.generated.h"
 
 class AStackBlock;

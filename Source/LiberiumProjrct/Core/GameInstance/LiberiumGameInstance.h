@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Engine/GameInstance.h"
-#include "Core/LiberiumGameTypes.h"
+#include "LiberiumProjrct/Core/LiberiumGameTypes.h"
 #include "LiberiumGameInstance.generated.h"
 
 UCLASS()

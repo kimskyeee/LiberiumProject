@@ -1,8 +1,8 @@
 // Copyright LiberiumProject. All Rights Reserved.
 
-#include "Core/GameMode/LiberiumTownGameMode.h"
-#include "Core/GameInstance/LiberiumGameInstance.h"
-#include "Core/LiberiumGameTypes.h"
+#include "LiberiumProjrct/Core/GameMode/LiberiumTownGameMode.h"
+#include "LiberiumProjrct/Core/GameInstance/LiberiumGameInstance.h"
+#include "LiberiumProjrct/Core/LiberiumGameTypes.h"
 
 ALiberiumTownGameMode::ALiberiumTownGameMode()
 {

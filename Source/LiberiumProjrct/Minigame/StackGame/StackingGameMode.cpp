@@ -1,8 +1,10 @@
 // Copyright LiberiumProject. All Rights Reserved.
 
-#include "Minigame/StackGame/StackingGameMode.h"
-#include "Minigame/StackGame/StackBlock.h"
-#include "Minigame/StackGame/StackingPlayerController.h"
+#include "StackingGameMode.h"
+
+#include "AITestsCommon.h"
+#include "StackingPlayerController.h"
+#include "LiberiumProjrct/Minigame/StackGame/StackBlock.h"
 #include "Camera/CameraActor.h"
 #include "Camera/CameraComponent.h"
 #include "Kismet/GameplayStatics.h"
