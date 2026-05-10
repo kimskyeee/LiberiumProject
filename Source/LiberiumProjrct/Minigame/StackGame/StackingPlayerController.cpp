@@ -16,6 +16,8 @@ void AStackingPlayerController::BeginPlay()
 {
 	Super::BeginPlay();
 
+	SetInputMode(FInputModeGameOnly());
+
 	// Create input actions
 	DropAction = NewObject<UInputAction>(this, TEXT("IA_Drop"));
 	DropAction->ValueType = EInputActionValueType::Boolean;

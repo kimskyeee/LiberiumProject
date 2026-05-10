@@ -10,7 +10,7 @@
 AStackingGameMode::AStackingGameMode()
 {
 	PrimaryActorTick.bCanEverTick = true;
-	DefaultPawnClass = nullptr;
+	DefaultPawnClass = APawn::StaticClass();
 	PlayerControllerClass = AStackingPlayerController::StaticClass();
 }
 
