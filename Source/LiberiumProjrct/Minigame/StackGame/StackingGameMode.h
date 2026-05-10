@@ -71,6 +71,10 @@ protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Camera")
 	float InitialCameraZ = 300.f;
 
+	// Physics
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Physics")
+	float CenterOfMassMargin = 0.3f;
+	
 private:
 	UPROPERTY()
 	TArray<TObjectPtr<AStackBlock>> StackedBlocks;
@@ -85,9 +89,6 @@ private:
 	int32 BlockCount = 0;
 	bool bGameOver = false;
 
-	// Physics
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Physics", meta = (AllowPrivateAccess = "true"))
-	float CenterOfMassMargin = 0.3f;
 
 	// Collapse
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Physics", meta = (AllowPrivateAccess = "true"))
