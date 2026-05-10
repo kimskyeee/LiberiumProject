@@ -44,7 +44,7 @@ public:
 	float DropSpeed = 1200.f;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Block")
-	float OverlapTolerance = 0.5f;
+	float OverlapTolerance = 1.0f;
 
 	DECLARE_DELEGATE_OneParam(FOnLanded, AStackBlock*);
 	DECLARE_DELEGATE(FOnFell);
