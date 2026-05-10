@@ -87,7 +87,7 @@ private:
 
 	// Physics
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Physics", meta = (AllowPrivateAccess = "true"))
-	float CenterOfMassMargin = 0.3f;
+	float MinSupportRatio = 0.2f;
 
 	// Collapse
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Physics", meta = (AllowPrivateAccess = "true"))
