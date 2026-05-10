@@ -85,6 +85,10 @@ private:
 	int32 BlockCount = 0;
 	bool bGameOver = false;
 
+	// Physics
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Physics")
+	float CenterOfMassMargin = 0.3f;
+
 	void SpawnBaseBlock();
 	void SpawnNextBlock();
 	void OnBlockLanded(AStackBlock* Block);
@@ -92,4 +96,6 @@ private:
 	void UpdateCamera(float DeltaTime);
 	float GetCurrentMoveSpeed() const;
 	float GetStackTopZ() const;
+	float CalcCenterOfMassX() const;
+	bool IsStackStable() const;
 };

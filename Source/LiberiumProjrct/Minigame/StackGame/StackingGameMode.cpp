@@ -103,6 +103,13 @@ void AStackingGameMode::OnBlockLanded(AStackBlock* Block)
 	StackedBlocks.Add(Block);
 	CurrentBlock = nullptr;
 
+	if (!IsStackStable())
+	{
+		UE_LOG(LogTemp, Warning, TEXT("Stack collapsed! Center of mass outside support base."));
+		OnBlockFell();
+		return;
+	}
+
 	BlockCount++;
 	Score += 1;
 
@@ -111,7 +118,7 @@ void AStackingGameMode::OnBlockLanded(AStackBlock* Block)
 		Score += 3;
 	}
 
-	UE_LOG(LogTemp, Log, TEXT("Block %d landed! Score: %d"), BlockCount, Score);
+	UE_LOG(LogTemp, Log, TEXT("Block %d landed! Score: %d (CoM X: %.1f)"), BlockCount, Score, CalcCenterOfMassX());
 	SpawnNextBlock();
 }
 
@@ -161,4 +168,33 @@ float AStackingGameMode::GetStackTopZ() const
 		return 0.f;
 	}
 	return StackedBlocks.Last()->GetTopZ();
+}
+
+float AStackingGameMode::CalcCenterOfMassX() const
+{
+	if (StackedBlocks.Num() == 0)
+	{
+		return 0.f;
+	}
+
+	float SumX = 0.f;
+	for (const auto& Block : StackedBlocks)
+	{
+		SumX += Block->GetActorLocation().X;
+	}
+	return SumX / StackedBlocks.Num();
+}
+
+bool AStackingGameMode::IsStackStable() const
+{
+	if (StackedBlocks.Num() <= 1)
+	{
+		return true;
+	}
+
+	float CoMX = CalcCenterOfMassX();
+	float BaseX = StackedBlocks[0]->GetActorLocation().X;
+	float SupportHalfWidth = BlockWidth * (0.5f + CenterOfMassMargin);
+
+	return FMath::Abs(CoMX - BaseX) <= SupportHalfWidth;
 }
