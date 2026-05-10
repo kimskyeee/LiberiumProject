@@ -30,6 +30,7 @@ public:
 
 	void StartMoving(float Speed, float InLeftBound, float InRightBound, float InTargetLandingZ, float InReferenceX);
 	void Drop();
+	void StartFalling(float Direction);
 
 	FORCEINLINE EStackBlockState GetBlockState() const { return BlockState; }
 	float GetTopZ() const;

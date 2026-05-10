@@ -46,6 +46,12 @@ void AStackingGameMode::BeginPlay()
 void AStackingGameMode::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	if (bCollapsing)
+	{
+		TickCollapse(DeltaTime);
+	}
+
 	UpdateCamera(DeltaTime);
 }
 
@@ -91,7 +97,7 @@ void AStackingGameMode::SpawnNextBlock()
 
 void AStackingGameMode::DropCurrentBlock()
 {
-	if (bGameOver || !CurrentBlock)
+	if (bGameOver || bCollapsing || !CurrentBlock)
 	{
 		return;
 	}
@@ -106,7 +112,7 @@ void AStackingGameMode::OnBlockLanded(AStackBlock* Block)
 	if (!IsStackStable())
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Stack collapsed! Center of mass outside support base."));
-		OnBlockFell();
+		StartCollapse();
 		return;
 	}
 
@@ -128,6 +134,41 @@ void AStackingGameMode::OnBlockFell()
 	CurrentBlock = nullptr;
 
 	UE_LOG(LogTemp, Warning, TEXT("Game Over! Final Score: %d (Blocks: %d)"), Score, BlockCount);
+}
+
+void AStackingGameMode::StartCollapse()
+{
+	bCollapsing = true;
+	CurrentBlock = nullptr;
+	CollapseTimer = 0.f;
+
+	float CoMX = CalcCenterOfMassX();
+	float BaseX = StackedBlocks[0]->GetActorLocation().X;
+	CollapseDirection = (CoMX > BaseX) ? 1.f : -1.f;
+
+	// Start from top block
+	NextCollapseIndex = StackedBlocks.Num() - 1;
+
+	UE_LOG(LogTemp, Warning, TEXT("Stack collapsing! Direction: %s"), CollapseDirection > 0.f ? TEXT("Right") : TEXT("Left"));
+}
+
+void AStackingGameMode::TickCollapse(float DeltaTime)
+{
+	CollapseTimer += DeltaTime;
+
+	if (CollapseTimer >= CascadeDelay && NextCollapseIndex > 0)
+	{
+		StackedBlocks[NextCollapseIndex]->StartFalling(CollapseDirection);
+		NextCollapseIndex--;
+		CollapseTimer = 0.f;
+
+		if (NextCollapseIndex <= 0)
+		{
+			bCollapsing = false;
+			bGameOver = true;
+			UE_LOG(LogTemp, Warning, TEXT("Game Over! Final Score: %d (Blocks: %d)"), Score, BlockCount);
+		}
+	}
 }
 
 void AStackingGameMode::RestartGame()
