@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Core/GameMode/LiberiumGameModeBase.h"
+#include "LiberiumGameModeBase.h"
 #include "LiberiumTownGameMode.generated.h"
 
 UCLASS()

@@ -1,7 +1,8 @@
 // Copyright LiberiumProject. All Rights Reserved.
 
-#include "Core/GameInstance/LiberiumGameInstance.h"
+#include "LiberiumGameInstance.h"
 #include "Kismet/GameplayStatics.h"
+#include "LiberiumProjrct/Core/LiberiumGameTypes.h"
 
 void ULiberiumGameInstance::Init()
 {

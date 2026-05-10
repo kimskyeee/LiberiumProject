@@ -1,7 +1,7 @@
 // Copyright LiberiumProject. All Rights Reserved.
 
-#include "Minigame/StackGame/StackingPlayerController.h"
-#include "Minigame/StackGame/StackingGameMode.h"
+#include "LiberiumProjrct/Minigame/StackGame/StackingPlayerController.h"
+#include "LiberiumProjrct/Minigame/StackGame/StackingGameMode.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "InputAction.h"

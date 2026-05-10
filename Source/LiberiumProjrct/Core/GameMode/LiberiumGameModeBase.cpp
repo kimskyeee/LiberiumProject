@@ -1,7 +1,7 @@
 // Copyright LiberiumProject. All Rights Reserved.
 
-#include "Core/GameMode/LiberiumGameModeBase.h"
-#include "Core/GameInstance/LiberiumGameInstance.h"
+#include "LiberiumGameModeBase.h"
+#include "LiberiumProjrct/Core/GameInstance/LiberiumGameInstance.h"
 
 ALiberiumGameModeBase::ALiberiumGameModeBase()
 {

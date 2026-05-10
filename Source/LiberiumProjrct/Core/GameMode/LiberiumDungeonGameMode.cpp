@@ -1,8 +1,8 @@
 // Copyright LiberiumProject. All Rights Reserved.
 
-#include "Core/GameMode/LiberiumDungeonGameMode.h"
-#include "Core/GameInstance/LiberiumGameInstance.h"
-#include "Core/LiberiumGameTypes.h"
+#include "LiberiumProjrct/Core/GameMode/LiberiumDungeonGameMode.h"
+#include "LiberiumProjrct/Core/GameInstance/LiberiumGameInstance.h"
+#include "LiberiumProjrct/Core/LiberiumGameTypes.h"
 
 ALiberiumDungeonGameMode::ALiberiumDungeonGameMode()
 {
