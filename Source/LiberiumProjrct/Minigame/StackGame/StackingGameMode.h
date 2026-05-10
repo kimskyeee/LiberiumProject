@@ -73,7 +73,7 @@ protected:
 
 	// Physics
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Physics")
-	float CenterOfMassMargin = 0.3f;
+	float MinSupportRatio = 0.2f;
 	
 private:
 	UPROPERTY()
