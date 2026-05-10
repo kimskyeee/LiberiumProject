@@ -82,6 +82,14 @@ void AStackBlock::Drop()
 	BlockState = EStackBlockState::Dropping;
 }
 
+void AStackBlock::StartFalling(float Direction)
+{
+	TiltDirection = Direction;
+	FallTimer = 0.f;
+	BlockState = EStackBlockState::Falling;
+	SetActorTickEnabled(true);
+}
+
 float AStackBlock::GetTopZ() const
 {
 	return GetActorLocation().Z + BlockHeight * 0.5f;

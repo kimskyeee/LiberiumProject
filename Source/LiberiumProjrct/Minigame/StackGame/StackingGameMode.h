@@ -86,13 +86,24 @@ private:
 	bool bGameOver = false;
 
 	// Physics
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Physics")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Physics", meta = (AllowPrivateAccess = "true"))
 	float CenterOfMassMargin = 0.3f;
+
+	// Collapse
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Physics", meta = (AllowPrivateAccess = "true"))
+	float CascadeDelay = 0.08f;
+
+	bool bCollapsing = false;
+	float CollapseTimer = 0.f;
+	int32 NextCollapseIndex = 0;
+	float CollapseDirection = 1.f;
 
 	void SpawnBaseBlock();
 	void SpawnNextBlock();
 	void OnBlockLanded(AStackBlock* Block);
 	void OnBlockFell();
+	void StartCollapse();
+	void TickCollapse(float DeltaTime);
 	void UpdateCamera(float DeltaTime);
 	float GetCurrentMoveSpeed() const;
 	float GetStackTopZ() const;
