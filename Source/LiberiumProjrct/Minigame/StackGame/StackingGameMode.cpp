@@ -233,9 +233,28 @@ bool AStackingGameMode::IsStackStable() const
 		return true;
 	}
 
-	float CoMX = CalcCenterOfMassX();
-	float BaseX = StackedBlocks[0]->GetActorLocation().X;
-	float SupportHalfWidth = BlockWidth * (0.5f + CenterOfMassMargin);
+	float HalfWidth = BlockWidth * 0.5f;
+	float SupportLeft = StackedBlocks[0]->GetActorLocation().X - HalfWidth;
+	float SupportRight = StackedBlocks[0]->GetActorLocation().X + HalfWidth;
 
-	return FMath::Abs(CoMX - BaseX) <= SupportHalfWidth;
+	for (int32 i = 1; i < StackedBlocks.Num(); i++)
+	{
+		float BlockX = StackedBlocks[i]->GetActorLocation().X;
+		float BlockLeft = BlockX - HalfWidth;
+		float BlockRight = BlockX + HalfWidth;
+
+		float OverlapLeft = FMath::Max(BlockLeft, SupportLeft);
+		float OverlapRight = FMath::Min(BlockRight, SupportRight);
+		float OverlapWidth = OverlapRight - OverlapLeft;
+
+		if (OverlapWidth < BlockWidth * MinSupportRatio)
+		{
+			UE_LOG(LogTemp, Warning, TEXT("Layer %d: support %.1f < min %.1f"), i, OverlapWidth, BlockWidth * MinSupportRatio);
+			return false;
+		}
+
+		SupportLeft = OverlapLeft;
+		SupportRight = OverlapRight;
+	}
+	return true;
 }
