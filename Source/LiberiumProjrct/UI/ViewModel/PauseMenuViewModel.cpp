@@ -1,6 +1,6 @@
 // Copyright LiberiumProject. All Rights Reserved.
 
-#include "UI/ViewModel/PauseMenuViewModel.h"
+#include "LiberiumProjrct/UI/ViewModel/PauseMenuViewModel.h"
 #include "Kismet/GameplayStatics.h"
 
 void UPauseMenuViewModel::TogglePause()

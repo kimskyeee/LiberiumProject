@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "UI/ViewModel/LiberiumViewModelBase.h"
+#include "LiberiumProjrct/UI/ViewModel/LiberiumViewModelBase.h"
 #include "PauseMenuViewModel.generated.h"
 
 UCLASS(BlueprintType)

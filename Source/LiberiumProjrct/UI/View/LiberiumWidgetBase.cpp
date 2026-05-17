@@ -1,7 +1,7 @@
 // Copyright LiberiumProject. All Rights Reserved.
 
-#include "UI/View/LiberiumWidgetBase.h"
-#include "UI/ViewModel/LiberiumViewModelBase.h"
+#include "LiberiumProjrct/UI/View/LiberiumWidgetBase.h"
+#include "LiberiumProjrct/UI/ViewModel/LiberiumViewModelBase.h"
 
 void ULiberiumWidgetBase::SetViewModel(ULiberiumViewModelBase* InViewModel)
 {

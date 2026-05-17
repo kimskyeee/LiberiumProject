@@ -1,8 +1,8 @@
 // Copyright LiberiumProject. All Rights Reserved.
 
-#include "UI/View/GameOverWidget.h"
-#include "UI/ViewModel/GameOverViewModel.h"
-#include "UI/Model/MinigameResult.h"
+#include "LiberiumProjrct/UI/View/GameOverWidget.h"
+#include "LiberiumProjrct/UI/ViewModel/GameOverViewModel.h"
+#include "LiberiumProjrct/UI/Model/MinigameResult.h"
 #include "Components/TextBlock.h"
 
 void UGameOverWidget::BindViewModel()

@@ -3,8 +3,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "UI/ViewModel/LiberiumViewModelBase.h"
-#include "UI/Model/MinigameResult.h"
+#include "LiberiumProjrct/UI/ViewModel/LiberiumViewModelBase.h"
+#include "LiberiumProjrct/UI/Model/MinigameResult.h"
 #include "GameOverViewModel.generated.h"
 
 UCLASS(BlueprintType)

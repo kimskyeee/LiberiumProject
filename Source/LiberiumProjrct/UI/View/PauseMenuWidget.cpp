@@ -1,7 +1,7 @@
 // Copyright LiberiumProject. All Rights Reserved.
 
-#include "UI/View/PauseMenuWidget.h"
-#include "UI/ViewModel/PauseMenuViewModel.h"
+#include "LiberiumProjrct/UI/View/PauseMenuWidget.h"
+#include "LiberiumProjrct/UI/ViewModel/PauseMenuViewModel.h"
 #include "Components/Button.h"
 
 void UPauseMenuWidget::BindViewModel()
