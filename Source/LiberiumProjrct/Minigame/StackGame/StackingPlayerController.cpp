@@ -2,6 +2,11 @@
 
 #include "LiberiumProjrct/Minigame/StackGame/StackingPlayerController.h"
 #include "LiberiumProjrct/Minigame/StackGame/StackingGameMode.h"
+#include "UI/ViewModel/StackGameHUDViewModel.h"
+#include "UI/ViewModel/GameOverViewModel.h"
+#include "UI/View/StackGameHUDWidget.h"
+#include "UI/View/GameOverWidget.h"
+#include "UI/Model/MinigameResult.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "InputAction.h"
@@ -41,6 +46,62 @@ void AStackingPlayerController::BeginPlay()
 	{
 		EIC->BindAction(DropAction, ETriggerEvent::Started, this, &AStackingPlayerController::OnDropPressed);
 		EIC->BindAction(RestartAction, ETriggerEvent::Started, this, &AStackingPlayerController::OnRestartPressed);
+	}
+
+	// Create HUD
+	CreateHUD();
+
+	// Bind game over event
+	if (AStackingGameMode* GM = Cast<AStackingGameMode>(GetWorld()->GetAuthGameMode()))
+	{
+		GM->OnGameOverEvent.AddDynamic(this, &AStackingPlayerController::OnGameOver);
+	}
+}
+
+void AStackingPlayerController::CreateHUD()
+{
+	if (!HUDWidgetClass)
+	{
+		return;
+	}
+
+	HUDViewModel = NewObject<UStackGameHUDViewModel>(this);
+	HUDViewModel->Initialize(GetWorld());
+
+	HUDWidget = CreateWidget<UStackGameHUDWidget>(this, HUDWidgetClass);
+	if (HUDWidget)
+	{
+		HUDWidget->SetViewModel(HUDViewModel);
+		HUDWidget->AddToViewport();
+	}
+}
+
+void AStackingPlayerController::OnGameOver()
+{
+	if (!GameOverWidgetClass)
+	{
+		return;
+	}
+
+	// Populate result
+	FMinigameResult Result;
+	Result.GameName = FText::FromString(TEXT("Stack Game"));
+
+	if (AStackingGameMode* GM = Cast<AStackingGameMode>(GetWorld()->GetAuthGameMode()))
+	{
+		Result.Score = GM->GetScore();
+		Result.ExtraFields.Add(TEXT("Blocks"), FText::AsNumber(GM->GetBlockCount()));
+	}
+
+	// Create GameOver ViewModel and Widget
+	GameOverVM = NewObject<UGameOverViewModel>(this);
+	GameOverVM->SetResult(Result);
+
+	GameOverWidgetInstance = CreateWidget<UGameOverWidget>(this, GameOverWidgetClass);
+	if (GameOverWidgetInstance)
+	{
+		GameOverWidgetInstance->SetViewModel(GameOverVM);
+		GameOverWidgetInstance->AddToViewport(10);
 	}
 }
 

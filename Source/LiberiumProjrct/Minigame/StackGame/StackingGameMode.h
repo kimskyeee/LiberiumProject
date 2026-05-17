@@ -9,6 +9,9 @@
 class AStackBlock;
 class ACameraActor;
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnScoreChangedDelegate);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnGameOverDelegate);
+
 UCLASS()
 class LIBERIUMPROJRCT_API AStackingGameMode : public ALiberiumGameModeBase
 {
@@ -29,6 +32,12 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Game")
 	bool IsGameOver() const { return bGameOver; }
+
+	UPROPERTY(BlueprintAssignable, Category = "Events")
+	FOnScoreChangedDelegate OnScoreChanged;
+
+	UPROPERTY(BlueprintAssignable, Category = "Events")
+	FOnGameOverDelegate OnGameOverEvent;
 
 protected:
 	virtual void BeginPlay() override;
