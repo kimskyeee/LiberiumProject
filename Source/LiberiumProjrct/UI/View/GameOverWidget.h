@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "UI/View/LiberiumWidgetBase.h"
+#include "LiberiumProjrct/UI/View/LiberiumWidgetBase.h"
 #include "GameOverWidget.generated.h"
 
 class UTextBlock;

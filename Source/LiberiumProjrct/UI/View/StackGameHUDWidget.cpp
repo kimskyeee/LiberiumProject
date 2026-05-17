@@ -1,7 +1,7 @@
 // Copyright LiberiumProject. All Rights Reserved.
 
-#include "UI/View/StackGameHUDWidget.h"
-#include "UI/ViewModel/StackGameHUDViewModel.h"
+#include "LiberiumProjrct/UI/View/StackGameHUDWidget.h"
+#include "LiberiumProjrct/UI/ViewModel/StackGameHUDViewModel.h"
 #include "Components/TextBlock.h"
 
 void UStackGameHUDWidget::BindViewModel()

@@ -1,7 +1,7 @@
 // Copyright LiberiumProject. All Rights Reserved.
 
-#include "UI/ViewModel/StackGameHUDViewModel.h"
-#include "Minigame/StackGame/StackingGameMode.h"
+#include "LiberiumProjrct/UI/ViewModel/StackGameHUDViewModel.h"
+#include "LiberiumProjrct/Minigame/StackGame/StackingGameMode.h"
 
 void UStackGameHUDViewModel::Initialize(UWorld* InWorld)
 {
