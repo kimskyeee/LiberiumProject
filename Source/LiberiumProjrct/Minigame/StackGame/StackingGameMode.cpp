@@ -125,6 +125,7 @@ void AStackingGameMode::OnBlockLanded(AStackBlock* Block)
 	}
 
 	UE_LOG(LogTemp, Log, TEXT("Block %d landed! Score: %d (CoM X: %.1f)"), BlockCount, Score, CalcCenterOfMassX());
+	OnScoreChanged.Broadcast();
 	SpawnNextBlock();
 }
 
@@ -134,6 +135,7 @@ void AStackingGameMode::OnBlockFell()
 	CurrentBlock = nullptr;
 
 	UE_LOG(LogTemp, Warning, TEXT("Game Over! Final Score: %d (Blocks: %d)"), Score, BlockCount);
+	OnGameOverEvent.Broadcast();
 }
 
 void AStackingGameMode::StartCollapse()
@@ -167,6 +169,7 @@ void AStackingGameMode::TickCollapse(float DeltaTime)
 			bCollapsing = false;
 			bGameOver = true;
 			UE_LOG(LogTemp, Warning, TEXT("Game Over! Final Score: %d (Blocks: %d)"), Score, BlockCount);
+			OnGameOverEvent.Broadcast();
 		}
 	}
 }
